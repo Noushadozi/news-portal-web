@@ -46,7 +46,7 @@ const showAllNews = (data, category_name) => {
   newsContainer.innerHTML = "";
   data.forEach((singleNews) => {
     // console.log(singleNews);
-    const { image_url, author, details, title, total_view, _id } = singleNews;
+    const { image_url, author, details, title, total_view, _id , rating} = singleNews;
     // newsContainer.innerHTML += ``;
     const card = document.createElement("div");
     card.classList.add("card", "mb-3");
@@ -75,6 +75,11 @@ const showAllNews = (data, category_name) => {
       </div>
       <div> 
       <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star-half"></i>
+      <p>${rating.number}</p>
       </div>
       <div> <i class="fas fa-arrow-right" onclick="fetchNewsDetail('${_id}')" data-bs-toggle="modal"
       data-bs-target="#exampleModal"></i>
@@ -94,7 +99,7 @@ const fetchNewsDetail = (news_id) => {
     .then((data) => showNewsDetail(data.data[0]));
 };
 const showNewsDetail = (newsDetail) => {
-  const { image_url, author, details, title, total_view, _id , others_info} = newsDetail;
+  const { image_url, author, details, title, total_view, _id , others_info, rating} = newsDetail;
   document.getElementById('modal-body').innerHTML = `
   <div class="card mb-3">
   <div class="row g-0">
@@ -119,8 +124,13 @@ const showNewsDetail = (newsDetail) => {
     <i class="fas fa-eye"></i>
     <p  class="m-0 p-0">${total_view}</p>
     </div>
-    <div> 
+    <div class="d-flex gap-2"> 
     <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star-half"></i>
+    <p>${rating.number}</p>
     </div>
     </div>
     </div>
